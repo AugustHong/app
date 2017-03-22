@@ -2,6 +2,8 @@ package com.example.githubtask;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,13 +13,21 @@ public class MainActivity extends AppCompatActivity {
 
     TextView text;
     Menu menu1;
+    Button button1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_main);  //換成別的layout
         text = (TextView)findViewById(R.id.text);
         text.setText("this is index activity");
+
+        button1 = (Button)findViewById(R.id.button1);
+        button1.setOnClickListener(new Button.OnClickListener(){ //按鈕按下去的功能
+            @Override
+            public void onClick(View v) {
+                go_to_second();
+            }
+        });
     }
 
     @Override
@@ -31,7 +41,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { //選單中的功能
-        if(item.getItemId() == R.id.next){go_to_second();}
+        if(item.getItemId() == R.id.next){
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this, secondActivity.class);
+            startActivity(intent);
+        }
+
         if(item.getItemId() == R.id.back){go_to_index();}
 
         return super.onOptionsItemSelected(item);
@@ -51,6 +66,14 @@ public class MainActivity extends AppCompatActivity {
         text.setText("this is index activity");
         menu_all_show();
         menu_hind(1);
+
+        button1 = (Button)findViewById(R.id.button1);
+        button1.setOnClickListener(new Button.OnClickListener(){ //按鈕按下去的功能
+            @Override
+            public void onClick(View v) {
+                go_to_second();
+            }
+        });
     }
 
     public void menu_hind(int i){
