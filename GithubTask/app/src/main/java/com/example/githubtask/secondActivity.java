@@ -36,6 +36,7 @@ public class secondActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.back) {
             Intent intent = new Intent();
             intent.setClass(secondActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);   //讓它以不重建的方式回到前頁
             startActivity(intent);
         }
 
