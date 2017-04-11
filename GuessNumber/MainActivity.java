@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "too low", Toast.LENGTH_SHORT).show();
                         for(int i = 0; i <= position;i++){m_state.set(i, true);}  //調整他的狀態
                         start_adapter(mData, m_state);   //因為一直無法去控制到別的holder（只能自已），所以解決方法就是重新再把他建一個出來
+                        //notifyDataSetChanged(); 這個好像是可以直接重置不用再呼叫了
                     }
                     if(position > r-1){
                         Toast.makeText(MainActivity.this, "too high", Toast.LENGTH_SHORT).show();
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     if(position == r-1){
                         Toast.makeText(MainActivity.this, position+"you're right", Toast.LENGTH_SHORT).show();
                         holder.mTextView.setBackgroundColor(0xfff00000);  //只有他一個，所以直接設定
-                        m_state.set(position, true);
+                        m_state.set(position+1, true);
                     }
                 }
             });
