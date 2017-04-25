@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>  <!--記得這裡要加喔-->
+<resources>
+    <array name="education_text">
+        <item>@string/education_text_1</item>
+        <item>@string/education_text_2</item>
+        <item>@string/education_text_3</item>
+        <item>@string/education_text_4</item>
+    </array>
+
+    <array name="education_value">
+        <item>@string/education_value_1</item>
+        <item>@string/education_value_2</item>
+        <item>@string/education_value_3</item>
+        <item>@string/education_value_4</item>
+    </array>
+
+    <array name="news_value">
+        <item>@string/news_value_1</item>
+        <item>@string/news_value_2</item>
+    </array>
+
+    <array name="news_text">
+        <item>@string/news_text_1</item>
+        <item>@string/news_text_2</item>
+    </array>
+</resources>

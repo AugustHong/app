@@ -1,0 +1,19 @@
+<resources>  <!--這裡要修改-->
+    <string name="app_name">PreferenceFragment</string>
+
+    <string name="education_text_1">國小</string>
+    <string name="education_text_2">國中</string>
+    <string name="education_text_3">高中</string>
+    <string name="education_text_4">大學</string>
+
+    <string name="education_value_1">國小</string>
+    <string name="education_value_2">國中</string>
+    <string name="education_value_3">高中</string>
+    <string name="education_value_4">大學</string>
+
+    <string name="news_text_1">社會</string>
+    <string name="news_text_2">焦點</string>
+
+    <string name="news_value_1">社會</string>
+    <string name="news_value_2">焦點</string>
+</resources>

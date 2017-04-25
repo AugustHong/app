@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>  <!--要變成獨立一個-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="聲音" >
+        <CheckBoxPreference
+            android:key="ref_key_mute"
+            android:title="是否靜音" />
+
+        <RingtonePreference
+            android:key="ref_key_ringtone"
+            android:title="訊息鈴聲" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="使用者資訊" >
+        <EditTextPreference
+            android:key="ref_key_name"
+            android:title="暱稱" />
+
+        <ListPreference
+            android:entries="@array/education_text"
+            android:entryValues="@array/education_value"
+            android:key="ref_key_education"
+            android:title="教育程度" />
+
+        <MultiSelectListPreference
+            android:entries="@array/news_text"
+            android:entryValues="@array/news_value"
+            android:key="ref_key_news"
+            android:title="欲閱讀項目" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="資料設定" >
+        <SwitchPreference
+            android:key="ref_key_sync"
+            android:title="是否同步" />
+    </PreferenceCategory>
+</PreferenceScreen>
