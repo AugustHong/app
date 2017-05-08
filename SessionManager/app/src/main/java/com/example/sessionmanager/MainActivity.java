@@ -66,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new MyDBHelper(this);
         mDb = dbHelper.getWritableDatabase();
-        addNew("abc", 20, "M");
-        addNew("def", 80, "M");
+
         cursor = getAll();
 
         myAdapter = new MyAdapter(this, cursor);

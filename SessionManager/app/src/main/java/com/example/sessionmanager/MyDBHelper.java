@@ -19,12 +19,12 @@ public class MyDBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {   //建立資料表
-        final String SQL_CREATE_MyDB_TABLE = "CREATE TABLE " +
+        final String SQL_CREATE_MyDB_TABLE = " CREATE TABLE  " +
                 MyDBEntry.TABLE_NAME + " (" +
-                MyDBEntry._ID + "  INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                MyDBEntry.COLUMN_NAME + " TEXT NOT NULL,  " +
-                MyDBEntry.COLUMN_AGE + "  INTEGER NOT NULL, " +
-                MyDBEntry.COLUMN_GENDER + " TEXT NOT NULL  " +
+                MyDBEntry._ID + "  INTEGER  PRIMARY  KEY  AUTOINCREMENT , " +
+                MyDBEntry.COLUMN_NAME + "  TEXT  NOT  NULL , " +
+                MyDBEntry.COLUMN_AGE + "   INTEGER  NOT  NULL ,  " +
+                MyDBEntry.COLUMN_GENDER + "  TEXT  NOT  NULL  " +
                 ");  ";
         db.execSQL(SQL_CREATE_MyDB_TABLE);
     }

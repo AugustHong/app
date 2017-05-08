@@ -56,8 +56,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         // Update the view holder with the information needed to display
         String name = mCursor.getString(mCursor.getColumnIndex(MyDBContract.MyDBEntry.COLUMN_NAME));
-        int age = mCursor.getInt(mCursor.getColumnIndex(MyDBEntry.COLUMN_AGE));
-        int id = mCursor.getInt(mCursor.getColumnIndex(MyDBEntry._ID));
+        int age = mCursor.getInt(mCursor.getColumnIndex(MyDBContract.MyDBEntry.COLUMN_AGE));
+        long id = mCursor.getLong(mCursor.getColumnIndex(MyDBContract.MyDBEntry._ID));
         String gender = mCursor.getString(mCursor.getColumnIndex(MyDBContract.MyDBEntry.COLUMN_GENDER));
 
         //顯示資料
