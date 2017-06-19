@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.example.k1dave6412.countdebtv1.GameActivity.endGame;
 import static com.example.k1dave6412.countdebtv1.GameActivity.host_id;
 import static com.example.k1dave6412.countdebtv1.GameActivity.players;
 
@@ -18,8 +19,7 @@ public class GamingActivity extends AppCompatActivity {
     ImageView nowPlayers;
     TextView playerMs, nowNumber;
     int order_id = 0;
-    int direction = 1, nnum = 0, btn_count = 0, ans, pre_player ;
-    boolean endGame;
+    int direction = 1, nnum = 0, btn_count = 0, ans, pre_player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,9 @@ public class GamingActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         ans = bundle.getInt("ans");
-        endGame = bundle.getBoolean("endgame");
-        order_id = host_id;  //第一位猜的是莊家自己
+        order_id = host_id;
 
-        nowNumber.setText(String.valueOf(nnum));   //當前累積的數字
+        nowNumber.setText(String.valueOf(nnum));
         playerMs.setText(getResources().getString(R.string.choseMsg, players[order_id].getName()));
         choose_player_pic(order_id);
         buttonTimesCheck();
@@ -54,8 +53,16 @@ public class GamingActivity extends AppCompatActivity {
                 if (nextPlayerButton.getVisibility() == View.INVISIBLE) {
                     nextPlayerButton.setVisibility(View.VISIBLE);
                 }
+                if (passButton.getVisibility() == View.VISIBLE) {
+                    passButton.setVisibility(View.INVISIBLE);
+                }
+                if (returnButton.getVisibility() == View.VISIBLE) {
+                    returnButton.setVisibility(View.INVISIBLE);
+                }
+
                 btn_count += 1;
                 nnum += 1;
+
                 nowNumber.setText(String.valueOf(nnum));
 
                 if (nnum == ans) {
@@ -65,22 +72,28 @@ public class GamingActivity extends AppCompatActivity {
                     nextPlayerButton.setVisibility(View.INVISIBLE);
 
                     players[order_id].setScore(-1);
-                    if(pre_player == host_id){players[pre_player].setScore(2);}else{players[pre_player].setScore(1);}
-                    if(players[order_id].getScore() <0){endGame = true;}
-                    host_id += 1;
-                    btn_count = 0;
+                    if (pre_player == host_id) {
+                        players[pre_player].setScore(2);
+                    } else {
+                        players[pre_player].setScore(1);
+                    }
+                    if (players[order_id].getScore() < 0) {
+                        endGame = true;
+                    }
 
-                    if(endGame) {
-                        String toastMsg = "5回合到了！重新開始遊戲！\n  排名如下：\n" + sort_rank();
+                    if (endGame) {
+                        String toastMsg = "遊戲結束了！重新開始遊戲！\n排名如下：\n" + sort_rank();
                         Toast.makeText(GamingActivity.this, toastMsg, Toast.LENGTH_LONG).show();
+                        endGame = false;
+                        host_id = 0;
 
                         Intent i = new Intent(GamingActivity.this, MainActivity.class);
                         startActivity(i);
                         GamingActivity.this.finish();
-                    }
-                    else{
-                        String toastMsg = players[order_id].getName() + "，你輸了！"+ players[pre_player].getName() +"得分\n遊戲即將重新開始！";
+                    } else {
+                        String toastMsg = players[order_id].getName() + "，你輸了！" + players[pre_player].getName() + "得分\n遊戲即將重新開始！";
                         Toast.makeText(GamingActivity.this, toastMsg, Toast.LENGTH_LONG).show();
+                        host_id += 1;
 
                         Intent i = new Intent(GamingActivity.this, GameActivity.class);
                         startActivity(i);
@@ -165,13 +178,12 @@ public class GamingActivity extends AppCompatActivity {
         nextPlayerButton.setVisibility(View.INVISIBLE);
     }
 
-
-    public String sort_rank(){
+    public String sort_rank() {
         String retS = "";
 
-        for(int i = 0; i <= players.length-2; i++) {
-            for(int j = i+1; j <= players.length -1 ; j++){
-                if(players[i].getScore() < players[j].getScore()){
+        for (int i = 0; i <= players.length - 2; i++) {
+            for (int j = i + 1; j <= players.length - 1; j++) {
+                if (players[i].getScore() < players[j].getScore()) {
                     Player t;
                     t = players[i];
                     players[i] = players[j];
@@ -180,8 +192,8 @@ public class GamingActivity extends AppCompatActivity {
             }
         }
 
-        for(int i = 0; i <= players.length -1 ; i++){
-            retS = retS + "第" + (i+1) +"名是： " + players[i].getName() + "     分數為：   " +  Integer.toString(players[i].getScore()) +  "分\n";
+        for (int i = 0; i <= players.length - 1; i++) {
+            retS = retS + "第" + (i + 1) + "名是： " + players[i].getName() + "     分數為：   " + Integer.toString(players[i].getScore()) + "分\n";
         }
 
         return retS;

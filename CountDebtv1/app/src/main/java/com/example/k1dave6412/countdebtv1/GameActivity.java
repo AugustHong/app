@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //初使化玩家
+
         for (int i = 0; i < players.length; i++) {
             if (host_id == 0) {
                 String name = "Player " + (i + 1);
@@ -64,16 +64,14 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ans = Integer.parseInt(inputNum.getText().toString());
 
-                if(ans >=1 && ans <=100) {
-                    Intent i = new Intent(GameActivity.this, GamingActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("ans", ans);
-                    bundle.putBoolean("endgame", endGame);
-                    i.putExtras(bundle);
+                Intent i = new Intent(GameActivity.this, GamingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("ans", ans);
+                i.putExtras(bundle);
 
-                    startActivity(i);
-                    GameActivity.this.finish();
-                }
+                startActivity(i);
+                GameActivity.this.finish();
+
             }
         });
     }
